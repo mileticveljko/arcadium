@@ -8,22 +8,20 @@ public:
     {
         // Data
         float vertices[] = {
-            100.0f, 100.0f, 0.0f, 0.0f,
-            100.0f, 300.0f, 0.0f, 1.0f,
-            300.0f, 300.0f, 1.0f, 1.0f,
-            300.0f, 100.0f, 1.0f, 0.0f
+            0.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 50.0f, 0.0f, 1.0f,
+            50.0f, 50.0f, 1.0f, 1.0f,
+            50.0f, 0.0f, 1.0f, 0.0f
         };
         unsigned int indices[] = {
             0, 1, 2,
             0, 2, 3
         };
         // !Data
-
-        tran = glm::ortho(0.0f, 640.0f, 0.0f, 480.0f);
-
-        shader = std::make_unique<ar::Shader>("rrc/shaders/texture_shader.glsl");
-    
+        shader = std::make_shared<ar::Shader>("rrc/shaders/texture_shader.glsl");
         vao = std::make_shared<ar::VertexArrayObject>();
+        cam = std::make_shared<ar::OrthographicCamera>(0.0f, 640.0f, 0.0f, 480.0f);
+        tex = std::make_unique<ar::Texture>("rrc/textures/wood.jpg");
 
         std::unique_ptr<ar::VertexBuffer> vb =
             std::make_unique<ar::VertexBuffer>(vertices, sizeof(vertices));
@@ -40,22 +38,29 @@ public:
         ar::Renderer::SetClearColor(0.1f, 0.6f, 0.4f);
     }
 
+    ~ExampleLayer()
+    {
+
+    }
+
     virtual void OnUpdate()
     {
-        shader->Bind();
-        std::unique_ptr<ar::Texture> tex = std::make_unique<ar::Texture>("rrc/textures/wood.jpg");
-        shader->UploadUniformMat4("transform", tran);
-        ar::Renderer::Draw(vao);
+        ar::Renderer::BeginScene(cam);
+        tex->Bind();
+        ar::Renderer::Draw(vao, shader, glm::translate(glm::mat4(1.0f), glm::vec3(100, 350, 0)));
+        ar::Renderer::EndScene();
     }
 
     virtual void OnEvent(ar::Event& ev)
     {
 
     }
+    
 private:
-    std::unique_ptr<ar::Shader> shader;
+    std::shared_ptr<ar::OrthographicCamera> cam;
+    std::shared_ptr<ar::Shader> shader;
     std::shared_ptr<ar::VertexArrayObject> vao;
-    glm::mat4 tran;
+    std::unique_ptr<ar::Texture> tex;
 };
 
 class Sandbox : public ar::UserApplication

@@ -15,9 +15,9 @@ namespace ar
 		void Bind(unsigned int slot = 0);
 		void Unbind();
 
-		unsigned int GetID() const { return ID; }
+		unsigned int GetID() const { return m_ID; }
 	private:
-		unsigned int ID;
+		unsigned int m_ID;
 	};
 }
 

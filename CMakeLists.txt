@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(lisum_map_engine)
+project(arcadium)
 
 add_subdirectory(vendor/glfw)
 add_subdirectory(vendor/glad)
@@ -19,6 +19,7 @@ set(SRCS
     src/render/IndexBuffer.cpp
     src/render/Shader.cpp
     src/render/Texture.cpp
+    src/render/OrthographicCamera.cpp
 )
 
 set(COMPILE_OPTIONS "-Wall;-Wno-int-to-pointer-cast;-Wno-unused-function")

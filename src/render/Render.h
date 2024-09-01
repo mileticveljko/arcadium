@@ -7,10 +7,9 @@
 #include <IndexBuffer.h>
 #include <Shader.h>
 #include <Texture.h>
+#include <OrthographicCamera.h>
 
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
-
-#include <stb_image.h>
 
 #endif

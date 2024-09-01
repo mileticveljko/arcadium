@@ -9,8 +9,8 @@ namespace ar
 {
 	Texture::Texture(const std::string& path)
 	{
-		glGenTextures(1, &ID);
-		glBindTexture(GL_TEXTURE_2D, ID);
+		glGenTextures(1, &m_ID);
+		glBindTexture(GL_TEXTURE_2D, m_ID);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -35,13 +35,15 @@ namespace ar
 			std::cout << "Failed to load texture" << std::endl;
 		}
 		stbi_image_free(data);
+		
+		Unbind();
 	}
 
 
 	Texture::Texture(unsigned char* data, int width, int height, int nrChannels)
     {
-        glGenTextures(1, &ID);
-		glBindTexture(GL_TEXTURE_2D, ID);
+        glGenTextures(1, &m_ID);
+		glBindTexture(GL_TEXTURE_2D, m_ID);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -55,17 +57,19 @@ namespace ar
         {
 		    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
         }
+
+		Unbind();
     }
 
 	Texture::~Texture()
 	{
-		glDeleteTextures(1, &ID);
+		glDeleteTextures(1, &m_ID);
 	}
 
 	void Texture::Bind(unsigned int slot)
 	{
 		glActiveTexture(GL_TEXTURE0+slot);
-		glBindTexture(GL_TEXTURE_2D, ID);
+		glBindTexture(GL_TEXTURE_2D, m_ID);
 	}
 
 	void Texture::Unbind()

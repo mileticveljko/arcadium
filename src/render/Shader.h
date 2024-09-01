@@ -2,7 +2,6 @@
 #define SHADER_H__
 
 #include <string>
-
 #include <glm/glm.hpp>
 
 namespace ar
