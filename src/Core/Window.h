@@ -18,6 +18,8 @@ namespace ar
         void OnUpdate();
         void SetEventCallback(void (*)(Event&));
         WindowProcFunc GetWindowProc();
+
+        const void* GetNativeWindow() const;
     private:
         void *m_NativeWindow;
     };   

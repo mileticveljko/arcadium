@@ -46,4 +46,9 @@ namespace ar {
         glfwSwapBuffers((GLFWwindow*)m_NativeWindow);
         glfwPollEvents();
     }
+
+    const void* Window::GetNativeWindow() const
+    {
+        return m_NativeWindow;
+    }
 }

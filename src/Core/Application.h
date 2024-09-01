@@ -16,6 +16,8 @@ namespace ar
         void Run();
         void OnEvent(Event&);
 
+        const UserApplication* GetUserApplication() const;
+
         static Application* GetInstance();
 
     private:

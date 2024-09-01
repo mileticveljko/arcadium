@@ -18,6 +18,8 @@ namespace ar {
         void OnEvent(Event&);
 
         void PushLayer(Layer*);
+
+        const void* GetNativeWindow() const;
     private:
         bool m_Running;
         Window* m_Window;

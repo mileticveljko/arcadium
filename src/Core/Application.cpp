@@ -24,6 +24,12 @@ namespace ar {
         m_UserApplication = ua;
     }
 
+
+    const UserApplication* Application::GetUserApplication() const
+    {
+        return m_UserApplication;
+    }
+
     void Application::Run()
     {
         m_UserApplication->Run();

@@ -67,4 +67,9 @@ namespace ar
             (*it)->OnEvent(ev);
         }
     }
+
+    const void* UserApplication::GetNativeWindow() const
+    {
+        return m_Window->GetNativeWindow();
+    }
 }

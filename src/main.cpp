@@ -1,5 +1,4 @@
-#include <Core.h>
-#include <Render.h>
+#include <arcadium.h>
 
 class ExampleLayer : public ar::Layer
 {
@@ -45,9 +44,30 @@ public:
 
     virtual void OnUpdate()
     {
+        static glm::vec3 transform = {100, 100, 0};
+
+        if(ar::Input::IsKeyPressed(ar::Key::Up))
+        {
+            transform.y--;
+        }
+        else if(ar::Input::IsKeyPressed(ar::Key::Down))
+        {
+            transform.y++;
+        }
+        
+        if(ar::Input::IsKeyPressed(ar::Key::Left))
+        {
+            transform.x--;
+        }
+        else if(ar::Input::IsKeyPressed(ar::Key::Right))
+        {
+            transform.x++;
+        }
+
         ar::Renderer::BeginScene(cam);
         tex->Bind();
-        ar::Renderer::Draw(vao, shader, glm::translate(glm::mat4(1.0f), glm::vec3(100, 350, 0)));
+        ar::Renderer::Draw(vao, shader, glm::translate(glm::mat4(1.0f), transform));
+        ar::Renderer::Draw(vao, shader, glm::translate(glm::mat4(1.0f), glm::vec3(300, 300, 0)));
         ar::Renderer::EndScene();
     }
 
