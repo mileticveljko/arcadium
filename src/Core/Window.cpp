@@ -15,6 +15,7 @@ namespace ar {
         if (!window) glfwTerminate();
 
         glfwMakeContextCurrent(window);
+        glfwSwapInterval(0);
 
         glfwSetWindowCloseCallback(window, [](GLFWwindow* window){
             void (*cb)(Event&) = (void (*)(Event&))glfwGetWindowUserPointer(window);

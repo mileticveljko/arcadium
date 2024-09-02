@@ -6,6 +6,7 @@
 #include <Core/Input.h>
 #include <Core/KeyCodes.h>
 #include <Core/EntryPoint.h>
+#include <Core/Timestamp.h>
 
 #include <Renderer/Renderer.h>
 #include <Renderer/VertexArrayObject.h>

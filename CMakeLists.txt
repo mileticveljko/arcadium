@@ -13,6 +13,7 @@ set(SRCS
     src/Core/UserApplication.cpp
     src/Core/Window.cpp
     src/Core/Input.cpp
+    src/Core/Timestamp.cpp
 
     src/Renderer/Renderer.cpp
     src/Renderer/VertexArrayObject.cpp

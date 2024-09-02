@@ -20,8 +20,11 @@ namespace ar {
         void PushLayer(Layer*);
 
         const void* GetNativeWindow() const;
-    private:
+        
+    protected:
         bool m_Running;
+        
+    private:
         Window* m_Window;
     
     private:

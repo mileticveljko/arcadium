@@ -42,26 +42,26 @@ public:
 
     }
 
-    virtual void OnUpdate()
+    virtual void OnUpdate(ar::Timestamp& t)
     {
-        static glm::vec3 transform = {100, 100, 0};
+        static glm::vec3 transform = {100.0f, 100.0f, 0.0f};
 
         if(ar::Input::IsKeyPressed(ar::Key::Up))
         {
-            transform.y--;
+            transform.y -= 100 * t.GetDeltaTime();
         }
         else if(ar::Input::IsKeyPressed(ar::Key::Down))
         {
-            transform.y++;
+            transform.y += 100 * t.GetDeltaTime();
         }
         
         if(ar::Input::IsKeyPressed(ar::Key::Left))
         {
-            transform.x--;
+            transform.x -= 100 * t.GetDeltaTime();
         }
         else if(ar::Input::IsKeyPressed(ar::Key::Right))
         {
-            transform.x++;
+            transform.x += 100 * t.GetDeltaTime();
         }
 
         ar::Renderer::BeginScene(cam);

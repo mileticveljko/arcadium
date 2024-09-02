@@ -4,6 +4,7 @@
 #include <Window.h>
 #include <Event.h>
 #include <Renderer.h>
+#include <Timestamp.h>
 
 namespace ar
 {
@@ -36,16 +37,19 @@ namespace ar
 
     void UserApplication::Run()
     {
+        Timestamp ts;
+
         while (m_Running)
         {
             Renderer::ClearScreen();
 
             for(Layer* layer : m_Layers)
             {
-                layer->OnUpdate();
+                layer->OnUpdate(ts);
             }
             
             m_Window->OnUpdate();
+            ts.CalculateDeltaTime();
         }
         
     }

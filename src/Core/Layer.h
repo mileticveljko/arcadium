@@ -2,6 +2,7 @@
 #define LAYER_H__
 
 #include <Event.h>
+#include <Timestamp.h>
 
 namespace ar
 {
@@ -13,7 +14,7 @@ namespace ar
 
         virtual void OnAttach() {}
         virtual void OnDetach() {}
-        virtual void OnUpdate() {}
+        virtual void OnUpdate(Timestamp&) {}
         virtual void OnEvent(Event&) {}
     };
 }
